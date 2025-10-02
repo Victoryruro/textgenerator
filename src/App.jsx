@@ -7,12 +7,6 @@ import Text from './components/controls/text.jsx';
 import Sentence from './components/controls/select.jsx';
 
 class App extends Component {
-  // constructor(props) {
-  //   super(props)
-  //   this.state = {
-  //     count: 0
-  //   }
-  // }
   constructor(props) {
     super(props);
     this.state = {
