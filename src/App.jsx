@@ -11,7 +11,7 @@ class App extends Component {
     super(props);
     this.state = {
       paras: 4,
-      html:8,
+      html:4,
       text:''
     };
   }
@@ -19,7 +19,7 @@ class App extends Component {
     this.getText();
   }
   getText() {
-    axios.get('/api/api?type=hipster-centric&paras=' + this.state.paras + '&sentences=' + this.state.html)
+    axios.get('https://hipsum.co/api/?type=hipster-centric&paras=' + this.state.paras + '&sentences=' + this.state.html)
     .then((response)=>{
       // this.setState({text:response.data}, function () {
       //   console.log(this.state);
@@ -49,27 +49,34 @@ class App extends Component {
   }
   
   render() {
-    return (
-      <>
-        <div className='App container '>
-          <h1>Sample Text Generator</h1>
-          <hr />
-          <form action="" className='form-inline'>
-            <div className='form-group'>
-              <label >Sentences</label>
-              <Sentence value={this.state.html} onChange={this.showHtml.bind(this)}/>
-            </div>
-             <div className='form-group'>
-              <label className='' >Paragraphs</label>
-              <Text value={this.state.paras} onChange={this.changeParas.bind(this)}/>
-            </div>
-          </form>
-          <Output value={this.state.text} />
+    if(  this.state.text===''){
+      return <h1>Loading...</h1>
+    } 
+    else{
+      return (
+        <>
+          <div className='App container '>
+            <h1>Sample Text Generator</h1>
+            <hr />
+            <form action="" className='form-inline'>
+              <div className='form-group'>
+                <label >Sentences</label>
+                <Sentence value={this.state.html} onChange={this.showHtml.bind(this)}/>
+              </div>
+              <div className='form-group'>
+                <label className='' >Paragraphs</label>
+                <Text value={this.state.paras} onChange={this.changeParas.bind(this)}/>
+              </div>
+            </form>
+            <Output value={this.state.text} />
 
 
-        </div>
-      </>
+          </div>
+        </>
     )
+
+    }
+
   }
 }
 
